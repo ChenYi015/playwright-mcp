@@ -143,6 +143,15 @@ export function configFromCLIOptions(cliOptions: CLIOptions): Config {
     };
     if (cliOptions.proxyBypass)
       launchOptions.proxy.bypass = cliOptions.proxyBypass;
+    // Chromium ignores credentials embedded in the proxy server URL, so
+    // they are passed separately via environment variables and forwarded
+    // to Playwright as launch proxy username/password.
+    const proxyUsername = process.env.PLAYWRIGHT_MCP_PROXY_USERNAME;
+    const proxyPassword = process.env.PLAYWRIGHT_MCP_PROXY_PASSWORD;
+    if (proxyUsername) {
+      launchOptions.proxy.username = proxyUsername;
+      launchOptions.proxy.password = proxyPassword || '';
+    }
   }
 
   if (cliOptions.device && cliOptions.cdpEndpoint)
