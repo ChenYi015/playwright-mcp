@@ -1,5 +1,5 @@
 {
-  "name": "@playwright/mcp",
+  "name": "@chenyi015/playwright-mcp",
   "version": "0.1.2",
   "description": "Playwright Tools for MCP",
   "type": "module",
@@ -27,7 +27,8 @@
     "wtest": "playwright test --project=webkit",
     "run-server": "node lib/browserServer.js",
     "clean": "rm -rf lib",
-    "npm-publish": "npm run clean && npm run build && npm run test && npm publish"
+    "npm-publish": "npm run clean && npm run build && npm run test && npm publish",
+    "prepare": "npm run build"
   },
   "exports": {
     "./package.json": "./package.json",
